@@ -9,15 +9,15 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="Python. Как начать. — гид от Mars IT School">
 <meta property="og:description" content="19 проверенных материалов, квиз под твой стиль и план первой недели. Бесплатно.">
-<meta property="og:image" content="https://python.marshub.uz/og.png">
-<meta property="og:url" content="https://python.marshub.uz/">
+<meta property="og:image" content="https://learn.marshub.uz/python/og.png">
+<meta property="og:url" content="https://learn.marshub.uz/python/">
 <meta property="og:site_name" content="Mars IT School">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Python. Как начать. — гид от Mars IT School">
 <meta name="twitter:description" content="19 проверенных материалов, квиз и план первой недели. Бесплатно.">
-<meta name="twitter:image" content="https://python.marshub.uz/og.png">
+<meta name="twitter:image" content="https://learn.marshub.uz/python/og.png">
 
-<script defer src="https://pulse.marshub.uz/script.js" data-website-id="3b388dd2-392a-4071-8276-6806dfc2bd7e"></script>
+<script defer src="https://pulse.marshub.uz/script.js" data-website-id="38199674-26f7-478d-be1b-05f782a94d4a"></script>
 <style>
   :root {
     --bg: #0a0a18;
@@ -990,7 +990,7 @@ const CFG = {
   marsUrl:    'https://marsit.uz/',
   trialUrl:   'https://landing.marsit.uz/',
   telegram:   'https://t.me/marshubbot',
-  pageUrl:    'https://python.marshub.uz/',
+  pageUrl:    'https://learn.marshub.uz/python/',
 };
 const UTM = 'utm_source=mars-python-start&utm_medium=social';
 const withUtm = u => u + (u.includes('?') ? '&' : '?') + UTM;
@@ -1055,9 +1055,10 @@ const T = {
         { v: 'do',    emj: '🛠',  label: 'Сразу делать руками — теория скучная' },
         { v: 'play',  emj: '🎮', label: 'Играть — пусть будет как игра' },
       ]},
-      { id: 'lang', q: 'Английский как?', options: [
-        { v: 'ru',  emj: '🇷🇺', label: 'Лучше на русском' },
-        { v: 'any', emj: '🌍', label: 'Норм, читаю и на английском' },
+      { id: 'lang', q: 'На каком языке понятны учебные материалы?', options: [
+        { v: 'uz',  emj: '📗', label: 'На узбекском' },
+        { v: 'ru',  emj: '📗', label: 'На русском' },
+        { v: 'any', emj: '📗📘', label: 'На русском и английском' },
       ]},
       { id: 'goal', q: 'Что хочется сделать первым?', options: [
         { v: 'bot',    emj: '🤖', label: 'Своего Telegram бота' },
@@ -1124,9 +1125,10 @@ const T = {
         { v: 'do',    emj: '🛠',  label: "Darhol qo'l bilan — nazariya zerikarli" },
         { v: 'play',  emj: '🎮', label: "O'yin — o'yin ko'rinishida bo'lsin" },
       ]},
-      { id: 'lang', q: 'Ingliz tilini bilasizmi?', options: [
-        { v: 'ru',  emj: '🇺🇿', label: "Ruscha/o'zbekcha yaxshiroq" },
-        { v: 'any', emj: '🌍', label: "Inglizchada ham o'qiy olaman" },
+      { id: 'lang', q: "Materiallar qaysi tilda tushunarli?", options: [
+        { v: 'uz',  emj: '📗', label: "O'zbekcha" },
+        { v: 'ru',  emj: '📗', label: "Ruscha" },
+        { v: 'any', emj: '📗📘', label: "Ruscha va inglizcha" },
       ]},
       { id: 'goal', q: 'Birinchi nima qilmoqchisiz?', options: [
         { v: 'bot',    emj: '🤖', label: "O'zimning Telegram botim" },
@@ -1262,6 +1264,38 @@ const ITEMS = [
     url: 'https://claude.ai/',
     domain: 'claude.ai', time: 'всегда',
     ages: ['13-15', '16+'] },
+
+  // uzbek
+  { id: 'sariqdev', cat: 'video', lang: 'uz', emoji: '📺',
+    title: 'SariqDev — Python darslari',
+    desc: "Anvar Narzullaev (PhD). 38+ video dars o'zbek tilida. Eng sifatli UZ kurs — bepul.",
+    url: 'https://www.youtube.com/c/Sariqdev',
+    channel: '@Sariqdev', duration: "38+ dars", time: "har biri 15 daq",
+    ages: ['13-15', '16+'] },
+  { id: 'mohirdev', cat: 'course', lang: 'uz', emoji: '🎓',
+    title: 'Mohirdev — Python kursi',
+    desc: "O'zbekistonning eng yaxshi IT platformasi. Python asoslaridan Full Stack gacha, o'zbek tilida.",
+    url: 'https://mohirdev.uz/kurslar/dasturlash-asoslari-python/',
+    modules: '30+', level: "Asosdan", time: '1-2 oy',
+    ages: ['13-15', '16+'] },
+  { id: 'uzbekdevs', cat: 'course', lang: 'uz', emoji: '📝',
+    title: "UzbekDevs — Python darsliklar",
+    desc: "Matnli darsliklar o'zbek tilida. O'zgaruvchilar, shartlar, sinflar, istisnolar — bepul.",
+    url: 'https://uzbekdevs.uz/darsliklar/python',
+    modules: '20+', level: "Boshlang'ich", time: '1-2 hafta',
+    ages: ['13-15', '16+'] },
+  { id: 'sariqdev-book', cat: 'book', lang: 'uz', emoji: '📖',
+    title: "Pythonda dasturlash asoslari",
+    desc: "O'zbek tilidagi eng yaxshi Python kitobi. Anvar Narzullaev, Akademnashr, 2021.",
+    url: 'https://asaxiy.uz/uz/product/anvar-narzullaev-pythonda-dasturlash-asoslari',
+    author: 'Anvar Narzullaev', pages: "Asaxiy'da", time: '3-4 hafta',
+    ages: ['13-15', '16+'] },
+  { id: 'pythonuz-tg', cat: 'sandbox', lang: 'uz', emoji: '💬',
+    title: "Python UZ — Telegram jamoa",
+    desc: "Faol o'zbek tilida Python jamoa. Savollar, darslar, amaliy mashqlar. 1000+ a'zo.",
+    url: 'https://t.me/python_uzbek_coder',
+    domain: 't.me/python_uzbek_coder', time: 'doim',
+    ages: ['13-15', '16+'] },
 ];
 
 function catMeta(t) {
@@ -1288,8 +1322,11 @@ function scoreItems(answers) {
     if (answers.format === 'do'    && item.cat === 'course') s += 0.5;
     if (answers.format === 'play'  && item.cat === 'build') s += 1;
     if (answers.format === 'watch' && item.cat === 'course') s += 0.5;
+    if (answers.lang === 'uz' && item.lang === 'uz') s += 5;
+    if (answers.lang === 'uz' && item.lang !== 'uz') s -= 2;
     if (answers.lang === 'ru' && item.lang === 'en') s -= 2.5;
     if (answers.lang === 'ru' && item.lang === 'ru') s += 1;
+    if (answers.lang === 'ru' && item.lang === 'uz') s += 0.5;
     if (answers.goal === 'bot'    && item.id === 'tgbot') s += 5;
     if (answers.goal === 'bot'    && item.id === 'discord') s += 2;
     if (answers.goal === 'game'   && item.cat === 'game') s += 2;
@@ -1299,6 +1336,8 @@ function scoreItems(answers) {
     if (answers.goal === 'parser' && item.id === 'automate') s += 2;
     if (answers.goal === 'idk'    && item.id === 'stepik') s += 3;
     if (answers.goal === 'idk'    && item.id === 'replit') s += 1;
+    if (answers.goal === 'idk'    && item.id === 'sariqdev') s += 2;
+    if (answers.goal === 'idk'    && item.id === 'mohirdev') s += 2;
     return { ...item, score: s };
   });
 }
@@ -1535,9 +1574,9 @@ function LangPicker({ onPick, onClose }) {
     h('p', { style: { color: 'var(--muted)', fontSize: '15px', margin: '-14px 0 22px' } }, 'Выберите язык'),
     h('div', { className: 'options' },
       h('button', { className: 'opt', onClick: () => onPick('uz') },
-        h('span', { className: 'emj' }, '🇺🇿'), "O'zbekcha"),
+        h('span', { className: 'emj', style: { fontWeight: 700, fontSize: '16px' } }, 'UZ'), "O'zbekcha"),
       h('button', { className: 'opt', onClick: () => onPick('ru') },
-        h('span', { className: 'emj' }, '🇷🇺'), 'Русский'),
+        h('span', { className: 'emj', style: { fontWeight: 700, fontSize: '16px' } }, 'RU'), 'Русский'),
     ),
   );
 }
@@ -1570,6 +1609,7 @@ function Modal({ step, langStep, onLangPick, onAnswer, onClose, onSkip }) {
               exit: { opacity: 0, x: -20 }, transition: { duration: 0.2 },
             },
               h('h2', null, q.q),
+              q.hint && h('p', { style: { color: 'var(--muted)', fontSize: '13px', margin: '-14px 0 18px', lineHeight: '1.45' } }, q.hint),
               h('div', { className: 'options' },
                 q.options.map(o => h('button', {
                   key: o.v, className: 'opt',
