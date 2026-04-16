@@ -1,0 +1,1617 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Python. Как начать. | Mars IT School</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="19 проверенных материалов, квиз под твой стиль обучения и план первой недели. Бесплатный гид от методистов Mars IT School.">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Python. Как начать. — гид от Mars IT School">
+<meta property="og:description" content="19 проверенных материалов, квиз под твой стиль и план первой недели. Бесплатно.">
+<meta property="og:image" content="https://python.marsit.uz/og.png">
+<meta property="og:url" content="https://python.marsit.uz/">
+<meta property="og:site_name" content="Mars IT School">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Python. Как начать. — гид от Mars IT School">
+<meta name="twitter:description" content="19 проверенных материалов, квиз и план первой недели. Бесплатно.">
+<meta name="twitter:image" content="https://python.marsit.uz/og.png">
+
+<script defer src="https://pulse.marshub.uz/script.js" data-website-id="e6bda4fd-a819-4d8c-982e-c83e30898770"></script>
+<style>
+  :root {
+    --bg: #0a0a18;
+    --text: #f5f5ff;
+    --muted: rgba(245,245,255,0.55);
+    --dim: rgba(245,245,255,0.4);
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', system-ui, sans-serif;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background:
+      radial-gradient(circle at 15% 10%, rgba(99, 102, 241, 0.3), transparent 45%),
+      radial-gradient(circle at 85% 85%, rgba(236, 72, 153, 0.22), transparent 50%),
+      radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.15), transparent 60%);
+    z-index: -1;
+    pointer-events: none;
+  }
+  .page { max-width: 1400px; margin: 0 auto; padding: 48px 32px 120px; }
+  .hero { margin-bottom: 36px; }
+  .hero h1 {
+    font-size: 52px; margin: 0 0 10px;
+    font-weight: 700; letter-spacing: -0.025em;
+    background: linear-gradient(135deg, #fff 0%, #c4b5fd 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .hero p { color: var(--muted); margin: 0; font-size: 17px; max-width: 640px; line-height: 1.5; }
+
+  .bento {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-auto-rows: 168px;
+    gap: 16px;
+  }
+
+  /* ── base tile ─────────────────────── */
+  .tile {
+    --cat: 168, 85, 247;
+    border-radius: 20px;
+    background: linear-gradient(135deg, rgba(var(--cat), 0.10), rgba(var(--cat), 0.02));
+    border: 1px solid rgba(var(--cat), 0.22);
+    padding: 18px;
+    color: inherit;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transition: transform 0.22s, border-color 0.22s, background 0.22s;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
+  }
+  .tile:hover {
+    border-color: rgba(var(--cat), 0.55);
+    background: linear-gradient(135deg, rgba(var(--cat), 0.16), rgba(var(--cat), 0.04));
+    transform: translateY(-2px);
+  }
+  .tile.dim { opacity: 0.35; }
+  .tile.hot {
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.15),
+      0 0 0 1px rgba(var(--cat), 0.55),
+      0 25px 65px -18px rgba(var(--cat), 0.5);
+  }
+  .tile h3 {
+    margin: 0;
+    font-size: 17px;
+    font-weight: 650;
+    letter-spacing: -0.01em;
+    line-height: 1.25;
+  }
+  .tile .desc {
+    margin: 0;
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .tile.sz-xl .desc { -webkit-line-clamp: 4; }
+  .tile.sz-l  .desc { -webkit-line-clamp: 3; }
+
+  .tile .badge {
+    position: absolute; top: 12px; right: 12px;
+    font-size: 10px;
+    padding: 5px 10px;
+    border-radius: 999px;
+    background: rgba(var(--cat), 0.3);
+    border: 1px solid rgba(var(--cat), 0.7);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 700;
+    z-index: 5;
+    backdrop-filter: blur(8px);
+  }
+
+  /* ── category colors ────────────────── */
+  .cat-course  { --cat: 6, 182, 212; }
+  .cat-book    { --cat: 245, 158, 11; }
+  .cat-video   { --cat: 239, 68, 68; }
+  .cat-game    { --cat: 168, 85, 247; }
+  .cat-build   { --cat: 16, 185, 129; }
+  .cat-sandbox { --cat: 236, 72, 153; }
+
+  /* ── grid sizes ─────────────────────── */
+  .sz-xl { grid-column: span 3; grid-row: span 2; }
+  .sz-l  { grid-column: span 3; grid-row: span 2; }
+  .sz-m  { grid-column: span 2; grid-row: span 1; }
+  .sz-s  { grid-column: span 2; grid-row: span 1; }
+  .sz-xl h3 { font-size: 28px; }
+  .sz-l  h3 { font-size: 21px; }
+  .sz-xl .desc { font-size: 15px; }
+  .sz-l  .desc { font-size: 14px; }
+
+  /* ══════════════ VIDEO (YouTube vibe) ══════════════ */
+  .cat-video .v-thumb {
+    flex: 1;
+    min-height: 0;
+    background:
+      radial-gradient(circle at 30% 30%, rgba(239,68,68,0.35), transparent 60%),
+      linear-gradient(135deg, rgba(239,68,68,0.22), rgba(127,29,29,0.3));
+    border: 1px solid rgba(239,68,68,0.3);
+    border-radius: 12px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .cat-video .v-thumb::after {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      repeating-linear-gradient(45deg, transparent 0 8px, rgba(255,255,255,0.015) 8px 9px);
+  }
+  .cat-video .v-play {
+    width: 46px; height: 46px;
+    border-radius: 50%;
+    background: rgba(239, 68, 68, 0.95);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    padding-left: 4px;
+    box-shadow: 0 10px 24px rgba(239, 68, 68, 0.5);
+    z-index: 1;
+  }
+  .sz-xl .cat-video .v-play, .cat-video.sz-xl .v-play { width: 72px; height: 72px; font-size: 26px; }
+  .cat-video .v-dur {
+    position: absolute;
+    bottom: 8px; right: 8px;
+    background: rgba(0,0,0,0.78);
+    color: #fff;
+    font-size: 10px;
+    padding: 2px 7px;
+    border-radius: 4px;
+    font-variant-numeric: tabular-nums;
+    font-weight: 600;
+    z-index: 1;
+  }
+  .cat-video .v-channel {
+    font-size: 12px;
+    color: rgba(239, 68, 68, 0.85);
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .cat-video .v-channel::before {
+    content: '';
+    display: block;
+    width: 16px; height: 16px;
+    border-radius: 50%;
+    background: rgba(239, 68, 68, 0.4);
+    border: 1px solid rgba(239, 68, 68, 0.6);
+  }
+
+  /* ══════════════ BOOK (bookshelf vibe) ══════════════ */
+  .cat-book {
+    flex-direction: row;
+    align-items: stretch;
+    gap: 14px;
+  }
+  .cat-book .b-cover {
+    aspect-ratio: 2 / 3;
+    max-height: 100%;
+    max-width: 32%;
+    flex: none;
+    align-self: center;
+    background:
+      linear-gradient(100deg, rgba(0,0,0,0.35) 0%, transparent 6%, transparent 94%, rgba(0,0,0,0.2) 100%),
+      linear-gradient(135deg, #92400e 0%, #451a03 100%);
+    border-radius: 4px 8px 8px 4px;
+    padding: 14px 10px;
+    color: #fde68a;
+    font-family: 'Georgia', 'Times New Roman', serif;
+    font-weight: 700;
+    font-size: 11px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1.25;
+    box-shadow:
+      -2px 0 0 rgba(0,0,0,0.3),
+      0 10px 30px rgba(0,0,0,0.5),
+      inset 3px 0 0 rgba(255,255,255,0.12),
+      inset -1px 0 0 rgba(0,0,0,0.3);
+    position: relative;
+    overflow: hidden;
+  }
+  .cat-book.sz-xl .b-cover, .cat-book.sz-l .b-cover { font-size: 14px; padding: 18px 12px; }
+  .cat-book .b-cover::before {
+    content: '';
+    position: absolute; top: 6px; left: 50%; transform: translateX(-50%);
+    width: 30%; height: 1px; background: rgba(253, 230, 138, 0.4);
+  }
+  .cat-book .b-cover::after {
+    content: '';
+    position: absolute; bottom: 6px; left: 50%; transform: translateX(-50%);
+    width: 30%; height: 1px; background: rgba(253, 230, 138, 0.4);
+  }
+  .cat-book .b-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 0;
+    justify-content: center;
+  }
+  .cat-book .b-author {
+    font-size: 11px;
+    color: rgba(245, 158, 11, 0.85);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+  }
+  .cat-book .b-pages {
+    font-size: 11px;
+    color: var(--dim);
+    margin-top: auto;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* ══════════════ COURSE (path vibe) ══════════════ */
+  .cat-course .c-path {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-bottom: 4px;
+  }
+  .cat-course .c-path .dot {
+    width: 9px; height: 9px;
+    border-radius: 50%;
+    background: rgba(6, 182, 212, 0.25);
+    border: 1px solid rgba(6, 182, 212, 0.5);
+    flex: none;
+  }
+  .cat-course .c-path .dot.on {
+    background: rgba(6, 182, 212, 0.95);
+    box-shadow: 0 0 10px rgba(6, 182, 212, 0.8);
+  }
+  .cat-course .c-path .dot.current {
+    background: rgba(6, 182, 212, 0.6);
+    box-shadow: 0 0 8px rgba(6, 182, 212, 0.6);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.25); }
+  }
+  .cat-course .c-path .line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(6,182,212,0.6), rgba(6,182,212,0.2));
+  }
+  .cat-course .c-meta {
+    margin-top: auto;
+    font-size: 11px;
+    color: rgba(6, 182, 212, 0.85);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 600;
+    display: flex;
+    gap: 10px;
+  }
+  .cat-course .c-meta .sep { color: var(--dim); }
+
+  /* ══════════════ VIDEO  size-l adjustments ══════════════ */
+  .sz-m.cat-video .v-thumb { min-height: 58px; }
+
+  /* ══════════════ GAME (arcade neon) ══════════════ */
+  .cat-game {
+    background:
+      linear-gradient(135deg, rgba(168, 85, 247, 0.15), rgba(236, 72, 153, 0.08));
+  }
+  .cat-game::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      linear-gradient(rgba(168, 85, 247, 0.08) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(168, 85, 247, 0.08) 1px, transparent 1px);
+    background-size: 24px 24px;
+    background-position: -1px -1px;
+    mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+    -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+    pointer-events: none;
+  }
+  .cat-game .g-top {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+  }
+  .cat-game .g-icon {
+    font-size: 30px;
+    line-height: 1;
+    filter: drop-shadow(0 0 12px rgba(168, 85, 247, 0.6));
+  }
+  .cat-game.sz-xl .g-icon, .cat-game.sz-l .g-icon { font-size: 52px; }
+  .cat-game .g-genre {
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: rgba(168, 85, 247, 0.9);
+    font-family: 'Courier New', monospace;
+    font-weight: 700;
+    padding: 3px 8px;
+    border: 1px solid rgba(168, 85, 247, 0.5);
+    border-radius: 4px;
+  }
+  .cat-game .g-press {
+    margin-top: auto;
+    font-family: 'Courier New', monospace;
+    font-size: 10px;
+    color: rgba(236, 72, 153, 0.95);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 700;
+    animation: blink 1.4s infinite;
+  }
+  @keyframes blink {
+    0%, 60% { opacity: 1; }
+    61%, 100% { opacity: 0.35; }
+  }
+  .cat-game h3, .cat-game .desc { position: relative; }
+
+  /* ══════════════ BUILD (terminal) ══════════════ */
+  .cat-build .bd-term {
+    background: rgba(0, 0, 0, 0.55);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    border-radius: 8px;
+    overflow: hidden;
+    font-family: 'SF Mono', 'Menlo', 'Courier New', monospace;
+    font-size: 11px;
+  }
+  .cat-build .bd-term .head {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 6px 10px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .cat-build .bd-term .dots {
+    display: flex;
+    gap: 5px;
+  }
+  .cat-build .bd-term .dots span {
+    width: 9px; height: 9px; border-radius: 50%; display: block;
+  }
+  .cat-build .bd-term .dots span:nth-child(1) { background: #ef4444; }
+  .cat-build .bd-term .dots span:nth-child(2) { background: #eab308; }
+  .cat-build .bd-term .dots span:nth-child(3) { background: #22c55e; }
+  .cat-build .bd-term .ttl {
+    margin-left: auto;
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.4);
+  }
+  .cat-build .bd-term .body {
+    padding: 10px 12px;
+    color: #6ee7b7;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .cat-build .bd-term .prompt {
+    color: rgba(110, 231, 183, 0.5);
+    margin-right: 6px;
+  }
+  .cat-build .bd-term .cursor {
+    display: inline-block;
+    width: 6px; height: 11px;
+    background: #6ee7b7;
+    margin-left: 2px;
+    vertical-align: middle;
+    animation: caret 1s infinite;
+  }
+  @keyframes caret {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+  }
+
+  /* ══════════════ SANDBOX (browser chrome) ══════════════ */
+  .cat-sandbox .sb-browser {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(236, 72, 153, 0.28);
+    border-radius: 10px;
+    overflow: hidden;
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .cat-sandbox .sb-browser .head {
+    padding: 8px 10px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    flex: none;
+  }
+  .cat-sandbox .sb-browser .dots {
+    display: flex;
+    gap: 5px;
+  }
+  .cat-sandbox .sb-browser .dots span {
+    width: 9px; height: 9px; border-radius: 50%; display: block;
+  }
+  .cat-sandbox .sb-browser .dots span:nth-child(1) { background: #ef4444; }
+  .cat-sandbox .sb-browser .dots span:nth-child(2) { background: #eab308; }
+  .cat-sandbox .sb-browser .dots span:nth-child(3) { background: #22c55e; }
+  .cat-sandbox .sb-browser .url {
+    flex: 1;
+    background: rgba(0, 0, 0, 0.35);
+    padding: 3px 10px;
+    border-radius: 4px;
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.65);
+    font-family: 'SF Mono', monospace;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .cat-sandbox .sb-browser .body {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 0;
+    background:
+      radial-gradient(circle at center, rgba(236, 72, 153, 0.15), transparent 70%);
+  }
+  .cat-sandbox .sb-browser .body .emo {
+    font-size: 26px;
+    filter: drop-shadow(0 0 10px rgba(236, 72, 153, 0.5));
+  }
+  .cat-sandbox.sz-xl .sb-browser .body .emo, .cat-sandbox.sz-l .sb-browser .body .emo { font-size: 46px; }
+
+  /* ══════════════ compact (s size — universal) ══════════════ */
+  .sz-s {
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 12px !important;
+    padding: 16px 18px !important;
+  }
+  .sz-s .s-dot {
+    width: 10px; height: 10px; border-radius: 50%;
+    background: rgba(var(--cat), 0.95);
+    flex: none;
+    box-shadow: 0 0 12px rgba(var(--cat), 0.7);
+  }
+  .sz-s .s-title {
+    flex: 1;
+    font-size: 14px;
+    font-weight: 600;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .sz-s .s-kind {
+    font-size: 10px;
+    color: rgba(var(--cat), 0.9);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 700;
+    flex: none;
+  }
+  .sz-s .s-arrow {
+    font-size: 14px;
+    color: var(--dim);
+    flex: none;
+  }
+
+  /* ── group labels ─────────────────── */
+  .group-label {
+    grid-column: 1 / -1;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--muted);
+    margin: 22px 0 2px;
+    padding-left: 6px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .group-label:first-child { margin-top: 0; }
+  .group-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(255,255,255,0.1), transparent);
+  }
+
+  /* ── modal ─────────────────── */
+  .backdrop {
+    position: fixed; inset: 0;
+    background: rgba(5, 5, 14, 0.35);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    display: flex; align-items: center; justify-content: center;
+    z-index: 100; padding: 24px;
+  }
+  .modal {
+    width: 100%; max-width: 540px;
+    background: rgba(30, 25, 55, 0.55);
+    backdrop-filter: blur(50px) saturate(200%);
+    -webkit-backdrop-filter: blur(50px) saturate(200%);
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 32px;
+    padding: 36px 34px 30px;
+    box-shadow:
+      0 40px 120px -20px rgba(0,0,0,0.6),
+      inset 0 1px 0 rgba(255,255,255,0.2),
+      inset 0 -1px 0 rgba(255,255,255,0.05);
+    position: relative;
+  }
+  .modal .close {
+    position: absolute; top: 18px; right: 18px;
+    width: 34px; height: 34px; border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.15);
+    background: rgba(255,255,255,0.08);
+    color: var(--text);
+    cursor: pointer;
+    font-size: 20px; line-height: 1;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+  }
+  .modal .close:hover { background: rgba(255,255,255,0.15); transform: rotate(90deg); }
+  .modal .step-counter {
+    font-size: 11px; color: var(--muted);
+    text-transform: uppercase; letter-spacing: 0.14em;
+    margin-bottom: 14px; font-weight: 700;
+  }
+  .modal h2 {
+    margin: 0 0 26px;
+    font-size: 27px; font-weight: 700;
+    letter-spacing: -0.015em; line-height: 1.2;
+  }
+  .options { display: flex; flex-direction: column; gap: 10px; }
+  .opt {
+    padding: 16px 20px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 15px;
+    color: var(--text);
+    text-align: left;
+    cursor: pointer;
+    font-size: 15px;
+    transition: all 0.2s;
+    font-family: inherit;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .opt:hover {
+    background: rgba(255,255,255,0.12);
+    border-color: rgba(168, 85, 247, 0.55);
+    transform: translateX(4px);
+  }
+  .opt .emj { font-size: 22px; }
+  .modal .skip {
+    margin-top: 22px;
+    background: none; border: none;
+    color: var(--muted);
+    cursor: pointer; font-size: 13px;
+    text-decoration: underline;
+    padding: 0; font-family: inherit;
+  }
+  .modal .skip:hover { color: var(--text); }
+  .progress { display: flex; gap: 6px; margin-top: 22px; }
+  .progress span {
+    flex: 1; height: 3px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 2px;
+    transition: background 0.3s;
+  }
+  .progress span.done { background: rgba(168, 85, 247, 0.85); }
+
+  .reopen {
+    position: fixed; bottom: 28px; right: 28px;
+    padding: 13px 22px;
+    background: rgba(168, 85, 247, 0.22);
+    border: 1px solid rgba(168, 85, 247, 0.55);
+    color: var(--text);
+    border-radius: 999px;
+    cursor: pointer;
+    font-size: 14px;
+    font-family: inherit;
+    backdrop-filter: blur(30px) saturate(180%);
+    -webkit-backdrop-filter: blur(30px) saturate(180%);
+    z-index: 50;
+    font-weight: 500;
+    transition: all 0.2s;
+  }
+  .reopen:hover { background: rgba(168, 85, 247, 0.35); transform: translateY(-2px); }
+
+  /* ── Language toggle ─────────────────── */
+  .lang-toggle {
+    display: inline-flex;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    overflow: hidden;
+    margin-left: 14px;
+    vertical-align: middle;
+  }
+  .lang-toggle button {
+    padding: 6px 14px;
+    font-size: 11px;
+    font-weight: 700;
+    font-family: inherit;
+    letter-spacing: 0.08em;
+    border: none;
+    cursor: pointer;
+    background: transparent;
+    color: var(--muted);
+    transition: all 0.2s;
+  }
+  .lang-toggle button.active {
+    background: rgba(255, 255, 255, 0.12);
+    color: var(--text);
+  }
+  .lang-toggle button:hover:not(.active) { color: var(--text); }
+
+  /* ── Mars badge ─────────────────── */
+  .mars-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    padding: 8px 16px 8px 14px;
+    background: rgba(239, 68, 68, 0.14);
+    border: 1px solid rgba(239, 68, 68, 0.42);
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+    color: #fecaca;
+    margin-bottom: 18px;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .mars-badge:hover {
+    background: rgba(239, 68, 68, 0.22);
+    transform: translateY(-1px);
+  }
+  .mars-badge .dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: #ef4444;
+    box-shadow: 0 0 10px rgba(239, 68, 68, 0.9);
+    animation: mars-pulse 2s ease-in-out infinite;
+  }
+  @keyframes mars-pulse {
+    0%, 100% { transform: scale(1); box-shadow: 0 0 10px rgba(239, 68, 68, 0.9); }
+    50% { transform: scale(1.2); box-shadow: 0 0 16px rgba(239, 68, 68, 1); }
+  }
+
+  /* ── Roadmap tile ─────────────────── */
+  .roadmap-tile {
+    grid-column: span 6;
+    grid-row: span 2;
+    border-radius: 22px;
+    padding: 26px 30px 24px;
+    position: relative;
+    overflow: hidden;
+    background:
+      linear-gradient(135deg, rgba(99, 102, 241, 0.16), rgba(236, 72, 153, 0.08)),
+      rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  }
+  .roadmap-tile::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #6366f1, #a855f7, #ec4899, #f59e0b);
+  }
+  .rt-head { display: flex; flex-direction: column; gap: 4px; }
+  .rt-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: rgba(196, 181, 253, 0.9);
+    font-weight: 700;
+  }
+  .rt-head h2 {
+    margin: 0;
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: -0.015em;
+  }
+  .rt-steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    flex: 1;
+  }
+  .rt-step {
+    padding: 14px 15px 16px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 13px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    position: relative;
+  }
+  .rt-step::after {
+    content: '→';
+    position: absolute;
+    right: -14px; top: 50%; transform: translateY(-50%);
+    color: rgba(255, 255, 255, 0.25);
+    font-size: 16px;
+    z-index: 2;
+  }
+  .rt-step:last-child::after { display: none; }
+  .rt-num {
+    font-size: 10px;
+    font-weight: 800;
+    color: #c4b5fd;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  .rt-step h4 {
+    margin: 2px 0 2px;
+    font-size: 14px;
+    font-weight: 650;
+    letter-spacing: -0.005em;
+  }
+  .rt-time {
+    font-size: 10.5px;
+    color: rgba(236, 72, 153, 0.85);
+    font-weight: 600;
+  }
+  .rt-step p {
+    margin: 4px 0 0;
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.4;
+  }
+
+  /* ── START HERE badge override ─────────────────── */
+  .tile.hot.start-here .badge {
+    background: linear-gradient(135deg, #f59e0b, #ef4444);
+    border-color: rgba(245, 158, 11, 0.9);
+    color: #fff;
+    padding: 6px 11px;
+    font-weight: 800;
+    box-shadow: 0 8px 20px -4px rgba(239, 68, 68, 0.5);
+  }
+
+  /* ── time pill ─────────────────── */
+  .time-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--dim);
+    letter-spacing: 0.04em;
+  }
+  .time-pill::before { content: '⏱'; opacity: 0.6; }
+
+  /* ── Parents block ─────────────────── */
+  .parents {
+    margin-top: 48px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    overflow: hidden;
+  }
+  .parents[open] { background: rgba(255, 255, 255, 0.05); }
+  .parents summary {
+    padding: 22px 28px;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    font-size: 16px;
+    font-weight: 600;
+    transition: background 0.2s;
+  }
+  .parents summary::-webkit-details-marker { display: none; }
+  .parents summary:hover { background: rgba(255, 255, 255, 0.03); }
+  .parents summary .expand {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px;
+    transition: transform 0.25s;
+  }
+  .parents[open] summary .expand { transform: rotate(45deg); }
+  .parents-body {
+    padding: 0 28px 28px;
+    color: var(--muted);
+    font-size: 14.5px;
+    line-height: 1.6;
+  }
+  .parents-body ul { padding-left: 0; list-style: none; margin: 0; display: flex; flex-direction: column; gap: 14px; }
+  .parents-body li { padding-left: 22px; position: relative; }
+  .parents-body li::before {
+    content: '▹';
+    position: absolute; left: 0;
+    color: rgba(239, 68, 68, 0.7);
+    font-weight: 700;
+  }
+  .parents-body strong { color: var(--text); }
+
+  /* ── Footer CTA ─────────────────── */
+  .mars-footer {
+    margin-top: 40px;
+    border-radius: 24px;
+    padding: 44px 36px;
+    background:
+      radial-gradient(circle at 15% 30%, rgba(239, 68, 68, 0.25), transparent 55%),
+      radial-gradient(circle at 85% 70%, rgba(236, 72, 153, 0.2), transparent 55%),
+      linear-gradient(135deg, rgba(30, 15, 25, 0.7), rgba(15, 10, 20, 0.8));
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+  }
+  .mars-footer::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #ef4444, #f59e0b, #ec4899);
+  }
+  .mf-brand {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.2em;
+    color: #fecaca;
+    margin-bottom: 8px;
+  }
+  .mars-footer h2 {
+    margin: 0 0 10px;
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+  .mars-footer p {
+    margin: 0 0 26px;
+    color: var(--muted);
+    font-size: 15px;
+    max-width: 540px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.5;
+  }
+  .mf-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 26px;
+  }
+  .btn-primary, .btn-secondary {
+    padding: 13px 24px;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s;
+    border: 1px solid transparent;
+  }
+  .btn-primary {
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+    color: #fff;
+    box-shadow: 0 12px 30px -8px rgba(239, 68, 68, 0.6);
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 16px 36px -8px rgba(239, 68, 68, 0.8); }
+  .btn-secondary {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.2);
+    color: var(--text);
+  }
+  .btn-secondary:hover { background: rgba(255, 255, 255, 0.14); transform: translateY(-1px); }
+  .mf-legal {
+    font-size: 12px;
+    color: var(--dim);
+    margin-top: 8px;
+  }
+  .mf-legal a { color: rgba(255, 255, 255, 0.65); }
+
+  /* ── Share toast ─────────────────── */
+  .toast {
+    position: fixed;
+    bottom: 90px; left: 50%;
+    transform: translateX(-50%);
+    padding: 12px 22px;
+    background: rgba(16, 185, 129, 0.95);
+    color: #fff;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 600;
+    box-shadow: 0 20px 50px -10px rgba(16, 185, 129, 0.6);
+    z-index: 200;
+  }
+
+  @media (max-width: 900px) {
+    .bento { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 180px; }
+    .sz-xl, .sz-l, .sz-m, .sz-s {
+      grid-column: span 2; grid-row: span 1;
+    }
+    .roadmap-tile { grid-column: span 2; grid-row: auto; }
+    .rt-steps { grid-template-columns: 1fr 1fr; }
+    .rt-step::after { display: none; }
+    .hero h1 { font-size: 36px; }
+    .mars-footer h2 { font-size: 24px; }
+    .page { padding: 32px 20px 100px; }
+  }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="module">
+import React, { useState, useMemo, createContext, useContext } from 'https://esm.sh/react@18.3.1';
+import { createRoot } from 'https://esm.sh/react-dom@18.3.1/client';
+import { motion, AnimatePresence, LayoutGroup } from 'https://esm.sh/framer-motion@11.11.17?deps=react@18.3.1,react-dom@18.3.1';
+
+const h = React.createElement;
+const F = React.Fragment;
+
+const CFG = {
+  marsUrl:    'https://marsit.uz/',
+  trialUrl:   'https://landing.marsit.uz/',
+  telegram:   'https://t.me/marshubbot',
+  pageUrl:    'https://python.marsit.uz/',
+};
+const UTM = 'utm_source=mars-python-start&utm_medium=social';
+const withUtm = u => u + (u.includes('?') ? '&' : '?') + UTM;
+const track = (name, data) => { try { window.umami?.track(name, data); } catch {} };
+
+// ── i18n ────────────────────────────────────────
+const T = {
+  ru: {
+    heroTitle: 'Python. Как начать.',
+    heroDesc: 'Проверенные материалы, квиз под твой стиль обучения и план первой недели. Бесплатный гид от методистов Mars IT School.',
+    roadmapLabel: 'если не знаешь с чего начать',
+    roadmapTitle: 'Твоя первая неделя по шагам',
+    steps: [
+      { num: 'День 1', time: '30 минут', t: 'Первая программа', p: 'Открой Replit в браузере. Напиши print("Привет!"). Попробуй 2+2, переменные, условия.' },
+      { num: 'Дни 2-3', time: '1-2 часа', t: 'Первые уроки', p: 'Пройди модули 1-3 на Stepik "Поколение Python". Переменные, условия, циклы — база.' },
+      { num: 'Дни 4-5', time: 'вечер', t: 'Свой первый проект', p: 'Сделай Telegram бота или парсер. Рабочий код за один вечер — проверено.' },
+      { num: 'Дни 6-7', time: 'час', t: 'Покажи результат', p: 'Покажи бота или скрипт другу. Расскажи что получилось. Это важнее чем кажется.' },
+    ],
+    quizReopen: '↻ пройти квиз',
+    quizSkip: 'пропустить и показать всё',
+    quizClose: 'Закрыть и смотреть всё',
+    quizStep: (n, total) => `Шаг ${n} из ${total}`,
+    groupStart: '🎯 Начни здесь',
+    groupAlt: '🔄 Если первое не зайдёт',
+    groupAll: '🗺 Вся карта',
+    badgeStart: 'начни здесь',
+    badgeFor: 'для тебя',
+    catCourse:  '🎯 Интерактивные курсы',
+    catBook:    '📚 Книги',
+    catVideo:   '🎬 Видео',
+    catGame:    '🎮 Игры и задачи',
+    catBuild:   '🛠 Сразу делать',
+    catSandbox: '🧪 Песочница и помощь',
+    shortCourse: 'Курс', shortBook: 'Книга', shortVideo: 'Видео',
+    shortGame: 'Игра', shortBuild: 'Проект', shortSandbox: 'Среда',
+    parentTitle: '👪 Родителям: что это, зачем и сколько стоит',
+    parentItems: [
+      ['Что это. ', 'Python — один из самых востребованных языков программирования в мире. Используется в AI, data science, бэкенде, автоматизации.'],
+      ['Зачем ребёнку. ', 'Развивает логику и аналитическое мышление. Даёт профессию на будущее. Python в топ-3 языков по спросу работодателей.'],
+      ['Что нужно. ', 'Только компьютер с браузером — многие материалы работают прямо на сайте, ничего ставить не нужно.'],
+      ['Сколько стоит. ', 'Все материалы на этой странице бесплатны или имеют бесплатный план.'],
+    ],
+    parentMars: ['Если нужен живой учитель. ', 'В ', ' проводят бесплатный пробный урок — оффлайн в Ташкенте и онлайн.'],
+    footerBrand: 'MARS IT SCHOOL',
+    footerTitle: 'Хочешь учиться с живым учителем?',
+    footerDesc: 'Бесплатный пробный урок. Оффлайн в Ташкенте и онлайн. Учим детей программированию с 2017 года.',
+    footerCta: 'Записаться на пробный →',
+    footerTg: '📩 В Telegram',
+    footerCopy: '🔗 Копировать ссылку',
+    footerLegal: ['Собрано методистами ', '. Все материалы принадлежат их авторам.'],
+    toastCopied: 'Ссылка скопирована!',
+    gamePress: '▸ press start',
+    questions: [
+      { id: 'age', q: 'Сколько тебе лет?', options: [
+        { v: '10-12', emj: '🧒', label: '10-12' },
+        { v: '13-15', emj: '🧑', label: '13-15' },
+        { v: '16+',   emj: '🎓', label: '16+' },
+      ]},
+      { id: 'format', q: 'Как тебе лучше заходит инфа?', options: [
+        { v: 'read',  emj: '📖', label: 'Читать — спокойно, в своём темпе' },
+        { v: 'watch', emj: '📺', label: 'Смотреть видео — чтоб объяснили голосом' },
+        { v: 'do',    emj: '🛠',  label: 'Сразу делать руками — теория скучная' },
+        { v: 'play',  emj: '🎮', label: 'Играть — пусть будет как игра' },
+      ]},
+      { id: 'lang', q: 'Английский как?', options: [
+        { v: 'ru',  emj: '🇷🇺', label: 'Лучше на русском' },
+        { v: 'any', emj: '🌍', label: 'Норм, читаю и на английском' },
+      ]},
+      { id: 'goal', q: 'Что хочется сделать первым?', options: [
+        { v: 'bot',    emj: '🤖', label: 'Своего Telegram бота' },
+        { v: 'game',   emj: '👾', label: 'Игру или что-то визуальное' },
+        { v: 'parser', emj: '🕷', label: 'Парсер — тащить данные с сайтов' },
+        { v: 'idk',    emj: '🤷', label: 'Пока не знаю, просто хочу начать' },
+      ]},
+    ],
+  },
+  uz: {
+    heroTitle: 'Python. Qanday boshlash.',
+    heroDesc: "Tekshirilgan materiallar, o'quv uslubingga mos viktorina va birinchi hafta rejasi. Mars IT School metodistlaridan bepul qo'llanma.",
+    roadmapLabel: 'nimadan boshlashni bilmasang',
+    roadmapTitle: "Birinchi hafta — qadam-baqadam",
+    steps: [
+      { num: '1-kun', time: '30 daqiqa', t: 'Birinchi dastur', p: "Brauzerda Replit-ni och. print(\"Salom!\") yoz. 2+2 ni sinab ko'r, o'zgaruvchilar, shartlar." },
+      { num: '2-3 kun', time: '1-2 soat', t: 'Birinchi darslar', p: "Stepik \"Pokolenie Python\" kursida 1-3 modullarni o't. O'zgaruvchilar, shartlar, sikllar — asos." },
+      { num: '4-5 kun', time: 'kechqurun', t: 'Birinchi loyiha', p: "Telegram bot yoki parser yasa. Bir kechada ishlaydigan kod — tasdiqlangan." },
+      { num: '6-7 kun', time: 'soat', t: "Natijani ko'rsat", p: "Bot yoki skriptni do'stingga ko'rsat. Nima chiqdi, nima qiyin bo'ldi — bu muhimroq bo'ladi." },
+    ],
+    quizReopen: '↻ viktorina',
+    quizSkip: "o'tkazib yuborish",
+    quizClose: "Yopish va hammasini ko'rish",
+    quizStep: (n, total) => `${n} / ${total} qadam`,
+    groupStart: '🎯 Shu yerdan boshla',
+    groupAlt: "🔄 Birinchisi yoqmasa",
+    groupAll: '🗺 Barcha materiallar',
+    badgeStart: 'shu yerdan',
+    badgeFor: 'sen uchun',
+    catCourse:  '🎯 Interaktiv kurslar',
+    catBook:    '📚 Kitoblar',
+    catVideo:   '🎬 Video',
+    catGame:    '🎮 O\'yinlar va masalalar',
+    catBuild:   '🛠 Darhol qilish',
+    catSandbox: '🧪 Sandbox va yordam',
+    shortCourse: 'Kurs', shortBook: 'Kitob', shortVideo: 'Video',
+    shortGame: "O'yin", shortBuild: 'Loyiha', shortSandbox: 'Muhit',
+    parentTitle: "👪 Ota-onalar uchun: bu nima, nima uchun va qancha turadi",
+    parentItems: [
+      ['Bu nima. ', "Python — dunyodagi eng mashhur dasturlash tillaridan biri. AI, data science, backend va avtomatizatsiyada ishlatiladi."],
+      ["Bolaga nima uchun kerak. ", "Mantiqiy fikrlashni rivojlantiradi. Kelajak uchun kasb beradi. Python ish beruvchilar talabida top-3 da."],
+      ['Nima kerak. ', "Faqat brauzerli kompyuter — ko'p materiallar saytda ishlaydi, hech narsa o'rnatish shart emas."],
+      ['Narxi qancha. ', "Bu sahifadagi barcha materiallar bepul yoki bepul rejaga ega."],
+    ],
+    parentMars: ["Jonli o'qituvchi kerak bo'lsa. ", '', " da bepul sinov darsi o'tkaziladi — Toshkentda va onlayn."],
+    footerBrand: 'MARS IT SCHOOL',
+    footerTitle: "Jonli o'qituvchi bilan o'qimoqchimisiz?",
+    footerDesc: "Bepul sinov darsi. Toshkentda offline va online. 2017-yildan beri bolalarga dasturlash o'rgatamiz.",
+    footerCta: "Sinov darsiga yozilish →",
+    footerTg: '📩 Telegram',
+    footerCopy: "🔗 Havolani nusxalash",
+    footerLegal: ['', " metodistlari tomonidan tuzilgan. Barcha materiallar mualliflariga tegishli."],
+    toastCopied: 'Havola nusxalandi!',
+    gamePress: '▸ press start',
+    questions: [
+      { id: 'age', q: 'Necha yoshdasan?', options: [
+        { v: '10-12', emj: '🧒', label: '10-12' },
+        { v: '13-15', emj: '🧑', label: '13-15' },
+        { v: '16+',   emj: '🎓', label: '16+' },
+      ]},
+      { id: 'format', q: "Ma'lumotni qanday o'zlashtirasiz?", options: [
+        { v: 'read',  emj: '📖', label: "O'qish — tinch, o'z tezligimda" },
+        { v: 'watch', emj: '📺', label: "Video ko'rish — ovoz bilan tushuntirishsa" },
+        { v: 'do',    emj: '🛠',  label: "Darhol qo'l bilan — nazariya zerikarli" },
+        { v: 'play',  emj: '🎮', label: "O'yin — o'yin ko'rinishida bo'lsin" },
+      ]},
+      { id: 'lang', q: 'Ingliz tilini bilasizmi?', options: [
+        { v: 'ru',  emj: '🇺🇿', label: "Ruscha/o'zbekcha yaxshiroq" },
+        { v: 'any', emj: '🌍', label: "Inglizchada ham o'qiy olaman" },
+      ]},
+      { id: 'goal', q: 'Birinchi nima qilmoqchisiz?', options: [
+        { v: 'bot',    emj: '🤖', label: "O'zimning Telegram botim" },
+        { v: 'game',   emj: '👾', label: "O'yin yoki vizual narsa" },
+        { v: 'parser', emj: '🕷', label: "Parser — saytlardan ma'lumot olish" },
+        { v: 'idk',    emj: '🤷', label: "Bilmayman, shunchaki boshlashni xohlayman" },
+      ]},
+    ],
+  },
+};
+
+const LangCtx = createContext('ru');
+
+// ── DATA ────────────────────────────────────────
+const ITEMS = [
+  { id: 'stepik', cat: 'course', lang: 'ru', emoji: '🎓',
+    title: 'Поколение Python',
+    desc: 'Интерактивный курс на Stepik. Лучший русский старт — теория, задачи с автопроверкой, поддержка.',
+    url: 'https://stepik.org/course/58852',
+    modules: '30', level: 'С нуля', time: '1 месяц',
+    ages: ['13-15', '16+'] },
+  { id: 'practicum', cat: 'course', lang: 'ru', emoji: '💼',
+    title: 'Яндекс Практикум',
+    desc: 'Бесплатная вводная часть от Яндекса. Серьёзный тренажёр в браузере, хорошие задачи.',
+    url: 'https://practicum.yandex.ru/python-basics/',
+    modules: '20 ч', level: 'С нуля', time: '1-2 недели',
+    ages: ['16+'] },
+  { id: 'hyperskill', cat: 'course', lang: 'en', emoji: '🧩',
+    title: 'Hyperskill',
+    desc: 'JetBrains Academy. Учишься через реальные проекты — гадалка, веб-краулер, чат-бот.',
+    url: 'https://hyperskill.org/tracks/python-core',
+    modules: '40+', level: 'Проекты', time: '2-3 месяца',
+    ages: ['16+'] },
+  { id: 'automate', cat: 'book', lang: 'en', emoji: '📖',
+    title: 'Automate the Boring Stuff',
+    desc: 'Учишь Python автоматизируя рутину: файлы, Excel, почту, картинки. Бесплатно онлайн.',
+    url: 'https://automatetheboringstuff.com/',
+    author: 'Al Sweigart', pages: '500 стр', time: '2-3 недели',
+    ages: ['13-15', '16+'] },
+  { id: 'kidspython', cat: 'book', lang: 'ru', emoji: '👾',
+    title: 'Python для детей',
+    desc: 'Плавный вход с минигрой на Pygame в конце. Идеально если опыта совсем нет.',
+    url: 'https://www.piter.com/product/python-dlya-detey-samouchitel-po-programmirovaniyu',
+    author: 'Jason Briggs', pages: '348 стр', time: '3-4 недели',
+    ages: ['10-12', '13-15'] },
+  { id: 'crashcourse', cat: 'book', lang: 'en', emoji: '🚀',
+    title: 'Python Crash Course',
+    desc: 'Самая продаваемая книга по Python в мире. Три реальных проекта во второй половине.',
+    url: 'https://nostarch.com/python-crash-course-3rd-edition',
+    author: 'Eric Matthes', pages: '560 стр', time: '1 месяц',
+    ages: ['13-15', '16+'] },
+  { id: 'shumeyko', cat: 'video', lang: 'ru', emoji: '📺',
+    title: 'Артём Шумейко',
+    desc: 'Современный русскоязычный канал. Чистая подача, актуальный Python, FastAPI и Django.',
+    url: 'https://www.youtube.com/@artemshumeyko',
+    channel: '@artemshumeyko', duration: 'Плейлист', time: 'по 15 мин',
+    ages: ['13-15', '16+'] },
+  { id: 'corey', cat: 'video', lang: 'en', emoji: '🎬',
+    title: 'Corey Schafer',
+    desc: 'Самые качественные Python-туториалы в интернете. От основ до Django и Flask.',
+    url: 'https://www.youtube.com/@coreyms',
+    channel: '@coreyms', duration: 'Плейлист', time: 'по 20 мин',
+    ages: ['13-15', '16+'] },
+  { id: 'fcc', cat: 'video', lang: 'en', emoji: '🎥',
+    title: 'freeCodeCamp Python',
+    desc: 'Один видеокурс — весь синтаксис Python за 4+ часа. Бесплатно на YouTube.',
+    url: 'https://www.youtube.com/watch?v=rfscVS0vtbw',
+    channel: '@freecodecamp', duration: '4:26:52', time: '4.5 часа',
+    ages: ['13-15', '16+'] },
+  { id: 'codecombat', cat: 'game', lang: 'en', emoji: '⚔️',
+    title: 'CodeCombat',
+    desc: 'РПГ где ты пишешь Python чтобы двигать героя. Убиваешь огров кодом.',
+    url: 'https://codecombat.com/',
+    genre: 'RPG', time: '2-4 часа',
+    ages: ['10-12', '13-15'] },
+  { id: 'checkio', cat: 'game', lang: 'en', emoji: '🏝',
+    title: 'CheckiO',
+    desc: 'Головоломки на Python на визуальных островах. Прокачивает логику и идиомы.',
+    url: 'https://py.checkio.org/',
+    genre: 'Puzzle', time: 'от часа',
+    ages: ['13-15', '16+'] },
+  { id: 'codewars', cat: 'game', lang: 'en', emoji: '🥋',
+    title: 'Codewars',
+    desc: 'Ката с рангами как в каратэ. Соревновательный вайб, тысячи задач.',
+    url: 'https://www.codewars.com/',
+    genre: 'Kata', time: 'от часа',
+    ages: ['13-15', '16+'] },
+  { id: 'tgbot', cat: 'build', lang: 'ru', emoji: '🤖',
+    title: 'Свой Telegram бот',
+    desc: 'python-telegram-bot. За вечер — работающий бот в твоём Telegram.',
+    url: 'https://github.com/python-telegram-bot/python-telegram-bot',
+    snippet: "bot.send_message('Hi!')", time: 'вечер',
+    ages: ['13-15', '16+'] },
+  { id: 'discord', cat: 'build', lang: 'en', emoji: '💬',
+    title: 'Discord бот',
+    desc: 'discord.py. Модерация, музыка, мини-игры — полный контроль над сервером.',
+    url: 'https://discordpy.readthedocs.io/',
+    snippet: "@bot.command()", time: 'вечер',
+    ages: ['13-15', '16+'] },
+  { id: 'parser', cat: 'build', lang: 'ru', emoji: '🕷',
+    title: 'Парсер сайта',
+    desc: 'requests + BeautifulSoup. Тащишь цены, погоду, мемы с любого сайта.',
+    url: 'https://www.crummy.com/software/BeautifulSoup/bs4/doc.ru/bs4ru.html',
+    snippet: "soup.find('h1').text", time: '2-3 часа',
+    ages: ['13-15', '16+'] },
+  { id: 'files', cat: 'build', lang: 'ru', emoji: '📂',
+    title: 'Автоматизация файлов',
+    desc: 'Переименовать 1000 файлов, разложить по папкам, найти дубликаты.',
+    url: 'https://automatetheboringstuff.com/2e/chapter9/',
+    snippet: "os.rename(old, new)", time: 'час',
+    ages: ['13-15', '16+'] },
+  { id: 'replit', cat: 'sandbox', lang: 'en', emoji: '🧪',
+    title: 'Replit',
+    desc: 'Пишешь код прямо в браузере, ничего не ставить. Идеально для первых шагов.',
+    url: 'https://replit.com/',
+    domain: 'replit.com', time: 'сразу',
+    ages: ['10-12', '13-15', '16+'] },
+  { id: 'trinket', cat: 'sandbox', lang: 'en', emoji: '🐢',
+    title: 'Trinket: Черепашка',
+    desc: 'Рисуешь фигуры кодом в браузере (turtle). Самый первый шаг для юных.',
+    url: 'https://trinket.io/python',
+    domain: 'trinket.io/python', time: 'сразу',
+    ages: ['10-12'] },
+  { id: 'colab', cat: 'sandbox', lang: 'en', emoji: '📓',
+    title: 'Google Colab',
+    desc: 'Jupyter notebook в облаке от Google. Бесплатно, с GPU если захочется AI.',
+    url: 'https://colab.research.google.com/',
+    domain: 'colab.research.google.com', time: 'сразу',
+    ages: ['16+'] },
+  { id: 'ai-tutor', cat: 'sandbox', lang: 'ru', emoji: '💡',
+    title: 'Claude как ментор',
+    desc: 'Застрял — спроси. Объяснит код построчно, найдёт ошибку, покажет пример. 24/7.',
+    url: 'https://claude.ai/',
+    domain: 'claude.ai', time: 'всегда',
+    ages: ['13-15', '16+'] },
+];
+
+function catMeta(t) {
+  return {
+    course:  { label: t.catCourse,  short: t.shortCourse,  order: 1 },
+    book:    { label: t.catBook,    short: t.shortBook,    order: 2 },
+    video:   { label: t.catVideo,   short: t.shortVideo,   order: 3 },
+    game:    { label: t.catGame,    short: t.shortGame,    order: 4 },
+    build:   { label: t.catBuild,   short: t.shortBuild,   order: 5 },
+    sandbox: { label: t.catSandbox, short: t.shortSandbox, order: 6 },
+  };
+}
+
+// ── SCORING ─────────────────────────────────────
+function scoreItems(answers) {
+  return ITEMS.map(item => {
+    let s = 0;
+    if (answers.age && item.ages) { if (item.ages.includes(answers.age)) s += 2; else s -= 3; }
+    if (answers.format === 'read'  && (item.cat === 'book' || item.cat === 'course')) s += 3;
+    if (answers.format === 'watch' && item.cat === 'video') s += 3;
+    if (answers.format === 'do'    && (item.cat === 'build' || item.cat === 'sandbox')) s += 3;
+    if (answers.format === 'play'  && item.cat === 'game') s += 3;
+    if (answers.format === 'read'  && item.cat === 'video') s += 0.5;
+    if (answers.format === 'do'    && item.cat === 'course') s += 0.5;
+    if (answers.format === 'play'  && item.cat === 'build') s += 1;
+    if (answers.format === 'watch' && item.cat === 'course') s += 0.5;
+    if (answers.lang === 'ru' && item.lang === 'en') s -= 2.5;
+    if (answers.lang === 'ru' && item.lang === 'ru') s += 1;
+    if (answers.goal === 'bot'    && item.id === 'tgbot') s += 5;
+    if (answers.goal === 'bot'    && item.id === 'discord') s += 2;
+    if (answers.goal === 'game'   && item.cat === 'game') s += 2;
+    if (answers.goal === 'game'   && item.id === 'kidspython') s += 2;
+    if (answers.goal === 'game'   && item.id === 'codecombat') s += 3;
+    if (answers.goal === 'parser' && item.id === 'parser') s += 5;
+    if (answers.goal === 'parser' && item.id === 'automate') s += 2;
+    if (answers.goal === 'idk'    && item.id === 'stepik') s += 3;
+    if (answers.goal === 'idk'    && item.id === 'replit') s += 1;
+    return { ...item, score: s };
+  });
+}
+
+function sizeFor(gi, idx, quizDone) {
+  if (!quizDone) return 'm';
+  if (gi === 0) { return idx === 0 ? 'xl' : idx === 1 ? 'l' : 'm'; }
+  if (gi === 2) return 's';
+  return 'm';
+}
+
+// ── CATEGORY RENDERERS ──────────────────────────
+function renderVideo(item) {
+  return h(F, null,
+    h('div', { className: 'v-thumb' }, h('div', { className: 'v-play' }, '▶'), h('div', { className: 'v-dur' }, item.duration)),
+    h('h3', null, item.title),
+    h('div', { className: 'v-channel' }, item.channel),
+    item.time && h('div', { className: 'time-pill' }, item.time),
+  );
+}
+function renderBook(item) {
+  return h(F, null,
+    h('div', { className: 'b-cover' }, item.title),
+    h('div', { className: 'b-info' },
+      h('div', { className: 'b-author' }, item.author),
+      h('h3', null, item.title),
+      h('p', { className: 'desc' }, item.desc),
+      h('div', { className: 'b-pages' }, `${item.pages} · ${item.time}`),
+    ),
+  );
+}
+function renderCourse(item) {
+  const p = [true, true, true, false, false, false, false];
+  return h(F, null,
+    h('div', { className: 'c-path' },
+      p.flatMap((on, i) => {
+        const dot = h('div', { key: `d${i}`, className: `dot${on ? ' on' : ''}${i === 3 ? ' current' : ''}` });
+        return i < p.length - 1 ? [dot, h('div', { key: `l${i}`, className: 'line' })] : [dot];
+      })
+    ),
+    h('h3', null, item.title),
+    h('p', { className: 'desc' }, item.desc),
+    h('div', { className: 'c-meta' },
+      h('span', null, `${item.modules} модулей`),
+      h('span', { className: 'sep' }, '·'),
+      h('span', null, item.time),
+      h('span', { className: 'sep' }, '·'),
+      h('span', null, item.lang === 'ru' ? 'RU' : 'EN'),
+    ),
+  );
+}
+function renderGame(item) {
+  const t = useContext(LangCtx);
+  return h(F, null,
+    h('div', { className: 'g-top' }, h('span', { className: 'g-icon' }, item.emoji), h('span', { className: 'g-genre' }, item.genre)),
+    h('h3', null, item.title),
+    h('p', { className: 'desc' }, item.desc),
+    h('div', { className: 'g-press' }, t.gamePress),
+  );
+}
+function renderBuild(item) {
+  return h(F, null,
+    h('div', { className: 'bd-term' },
+      h('div', { className: 'head' }, h('div', { className: 'dots' }, h('span'), h('span'), h('span')), h('div', { className: 'ttl' }, item.time)),
+      h('div', { className: 'body' }, h('span', { className: 'prompt' }, '>>>'), item.snippet, h('span', { className: 'cursor' })),
+    ),
+    h('h3', null, item.title),
+    h('p', { className: 'desc' }, item.desc),
+  );
+}
+function renderSandbox(item) {
+  return h(F, null,
+    h('div', { className: 'sb-browser' },
+      h('div', { className: 'head' }, h('div', { className: 'dots' }, h('span'), h('span'), h('span')), h('div', { className: 'url' }, item.domain)),
+      h('div', { className: 'body' }, h('div', { className: 'emo' }, item.emoji)),
+    ),
+    h('h3', null, item.title),
+    h('p', { className: 'desc' }, item.desc),
+  );
+}
+function renderCompact(item) {
+  const t = useContext(LangCtx);
+  const cm = catMeta(t);
+  return h(F, null,
+    h('div', { className: 's-dot' }),
+    h('div', { className: 's-title' }, item.title),
+    h('div', { className: 's-kind' }, cm[item.cat].short),
+    h('div', { className: 's-arrow' }, '→'),
+  );
+}
+
+const RENDERERS = { video: renderVideo, book: renderBook, course: renderCourse, game: renderGame, build: renderBuild, sandbox: renderSandbox };
+
+// ── TILE ────────────────────────────────────────
+function Tile({ item, size, hot, startHere, dim }) {
+  const t = useContext(LangCtx);
+  const isCompact = size === 's';
+  const cls = `tile sz-${size} cat-${item.cat}${hot ? ' hot' : ''}${startHere ? ' start-here' : ''}${dim ? ' dim' : ''}`;
+  return h(motion.a, {
+    layout: true, href: withUtm(item.url), target: '_blank', rel: 'noreferrer', className: cls,
+    onClick: () => track('item_click', { id: item.id, cat: item.cat }),
+    transition: { type: 'spring', stiffness: 280, damping: 32 },
+  },
+    startHere && !isCompact && h('div', { className: 'badge' }, t.badgeStart),
+    hot && !startHere && !isCompact && h('div', { className: 'badge' }, t.badgeFor),
+    isCompact ? renderCompact(item) : RENDERERS[item.cat](item),
+  );
+}
+
+// ── ROADMAP ─────────────────────────────────────
+function Roadmap() {
+  const t = useContext(LangCtx);
+  return h('div', { className: 'roadmap-tile' },
+    h('div', { className: 'rt-head' },
+      h('div', { className: 'rt-label' }, t.roadmapLabel),
+      h('h2', null, t.roadmapTitle),
+    ),
+    h('div', { className: 'rt-steps' },
+      t.steps.map((s, i) => h('div', { className: 'rt-step', key: i },
+        h('div', { className: 'rt-num' }, s.num),
+        h('h4', null, s.t),
+        h('div', { className: 'rt-time' }, s.time),
+        h('p', null, s.p),
+      ))
+    ),
+  );
+}
+
+// ── BENTO ───────────────────────────────────────
+function Bento({ answers }) {
+  const t = useContext(LangCtx);
+  const cm = catMeta(t);
+  const quizDone = Object.keys(answers).length > 0;
+  const scored = useMemo(() => scoreItems(answers), [answers]);
+
+  let groups;
+  if (!quizDone) {
+    groups = Object.entries(cm)
+      .sort((a, b) => a[1].order - b[1].order)
+      .map(([cat, meta]) => ({ label: meta.label, items: scored.filter(i => i.cat === cat) }));
+  } else {
+    const sorted = [...scored].sort((a, b) => b.score - a.score);
+    groups = [
+      { label: t.groupStart, items: sorted.slice(0, 3) },
+      { label: t.groupAlt,   items: sorted.slice(3, 9) },
+      { label: t.groupAll,   items: sorted.slice(9) },
+    ];
+  }
+
+  return h(LayoutGroup, null,
+    h('div', { className: 'bento' },
+      h(Roadmap),
+      groups.flatMap((g, gi) => [
+        h(motion.div, { layout: true, className: 'group-label', key: `l-${gi}` }, g.label),
+        ...g.items.map((item, idx) => h(Tile, {
+          key: item.id, item,
+          size: sizeFor(gi, idx, quizDone),
+          startHere: quizDone && gi === 0 && idx === 0,
+          hot: quizDone && gi === 0 && idx === 1,
+          dim: quizDone && item.score < -1,
+        })),
+      ])
+    )
+  );
+}
+
+// ── PARENTS ─────────────────────────────────────
+function Parents() {
+  const t = useContext(LangCtx);
+  return h('details', { className: 'parents' },
+    h('summary', null,
+      h('span', null, t.parentTitle),
+      h('span', { className: 'expand' }, '+'),
+    ),
+    h('div', { className: 'parents-body' },
+      h('ul', null,
+        ...t.parentItems.map(([bold, text], i) =>
+          h('li', { key: i }, h('strong', null, bold), text)
+        ),
+        h('li', null,
+          h('strong', null, t.parentMars[0]),
+          t.parentMars[1],
+          h('a', { href: withUtm(CFG.trialUrl), target: '_blank', style: { color: '#fecaca' } }, 'Mars IT School'),
+          t.parentMars[2],
+        ),
+      ),
+    ),
+  );
+}
+
+// ── FOOTER ──────────────────────────────────────
+function Footer() {
+  const t = useContext(LangCtx);
+  const [toast, setToast] = useState(false);
+  const share = () => {
+    navigator.clipboard.writeText(CFG.pageUrl).then(() => {
+      setToast(true); track('share_copy');
+      setTimeout(() => setToast(false), 2000);
+    });
+  };
+  const tgShare = () => {
+    track('share_telegram');
+    window.open(`https://t.me/share/url?url=${encodeURIComponent(CFG.pageUrl)}&text=${encodeURIComponent('Python — ' + t.heroTitle)}`, '_blank');
+  };
+  return h('div', { className: 'mars-footer' },
+    h('div', { className: 'mf-brand' }, t.footerBrand),
+    h('h2', null, t.footerTitle),
+    h('p', null, t.footerDesc),
+    h('div', { className: 'mf-buttons' },
+      h('a', { className: 'btn-primary', href: withUtm(CFG.trialUrl), target: '_blank', onClick: () => track('cta_trial') }, t.footerCta),
+      h('button', { className: 'btn-secondary', onClick: tgShare }, t.footerTg),
+      h('button', { className: 'btn-secondary', onClick: share }, t.footerCopy),
+    ),
+    h('div', { className: 'mf-legal' },
+      t.footerLegal[0],
+      h('a', { href: withUtm(CFG.marsUrl), target: '_blank' }, 'Mars IT School'),
+      t.footerLegal[1],
+    ),
+    toast && h(motion.div, {
+      className: 'toast',
+      initial: { opacity: 0, y: 20 }, animate: { opacity: 1, y: 0 }, exit: { opacity: 0 },
+    }, t.toastCopied),
+  );
+}
+
+// ── MODAL ───────────────────────────────────────
+function Modal({ step, onAnswer, onClose, onSkip }) {
+  const t = useContext(LangCtx);
+  const q = t.questions[step];
+  return h(motion.div, {
+    className: 'backdrop',
+    initial: { opacity: 0 }, animate: { opacity: 1 }, exit: { opacity: 0 },
+    transition: { duration: 0.25 },
+  },
+    h(motion.div, {
+      className: 'modal',
+      initial: { scale: 0.92, y: 20, opacity: 0 },
+      animate: { scale: 1, y: 0, opacity: 1 },
+      exit: { scale: 0.95, opacity: 0 },
+      transition: { type: 'spring', stiffness: 320, damping: 30 },
+    },
+      h('button', { className: 'close', onClick: onClose, title: t.quizClose }, '×'),
+      h('div', { className: 'step-counter' }, t.quizStep(step + 1, t.questions.length)),
+      h(AnimatePresence, { mode: 'wait' },
+        h(motion.div, {
+          key: q.id,
+          initial: { opacity: 0, x: 20 }, animate: { opacity: 1, x: 0 },
+          exit: { opacity: 0, x: -20 }, transition: { duration: 0.2 },
+        },
+          h('h2', null, q.q),
+          h('div', { className: 'options' },
+            q.options.map(o => h('button', {
+              key: o.v, className: 'opt',
+              onClick: () => onAnswer(q.id, o.v),
+            }, h('span', { className: 'emj' }, o.emj), o.label))
+          ),
+        )
+      ),
+      h('div', { className: 'progress' },
+        t.questions.map((_, i) => h('span', { key: i, className: i <= step ? 'done' : '' }))
+      ),
+      h('button', { className: 'skip', onClick: onSkip }, t.quizSkip),
+    )
+  );
+}
+
+// ── APP ─────────────────────────────────────────
+function App() {
+  const [lang, setLang] = useState('ru');
+  const [answers, setAnswers] = useState({});
+  const [step, setStep] = useState(0);
+  const [modalOpen, setModalOpen] = useState(true);
+  const t = T[lang];
+
+  const handleAnswer = (qid, v) => {
+    track('quiz_answer', { question: qid, answer: v });
+    const next = { ...answers, [qid]: v };
+    setAnswers(next);
+    if (step + 1 < t.questions.length) { setStep(step + 1); }
+    else { track('quiz_completed', next); setTimeout(() => setModalOpen(false), 220); }
+  };
+  const handleSkip = () => { track('quiz_skipped'); setAnswers({}); setModalOpen(false); };
+  const handleClose = () => { track('quiz_closed', { step }); setModalOpen(false); };
+  const handleReopen = () => { setStep(0); setAnswers({}); setModalOpen(true); };
+
+  return h(LangCtx.Provider, { value: t },
+    h('div', { className: 'page' },
+      h('div', { className: 'hero' },
+        h('div', { style: { display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: '10px', marginBottom: '18px' } },
+          h('a', { className: 'mars-badge', href: withUtm(CFG.marsUrl), target: '_blank', style: { marginBottom: 0 } },
+            h('span', { className: 'dot' }),
+            'MARS IT SCHOOL',
+          ),
+          h('div', { className: 'lang-toggle' },
+            h('button', { className: lang === 'ru' ? 'active' : '', onClick: () => { setLang('ru'); track('lang_switch', { to: 'ru' }); } }, 'RU'),
+            h('button', { className: lang === 'uz' ? 'active' : '', onClick: () => { setLang('uz'); track('lang_switch', { to: 'uz' }); } }, 'UZ'),
+          ),
+        ),
+        h('h1', null, t.heroTitle),
+        h('p', null, t.heroDesc),
+      ),
+      h(Bento, { answers }),
+      h(Parents),
+      h(Footer),
+    ),
+    h(AnimatePresence, null,
+      modalOpen && h(Modal, { key: 'modal', step, onAnswer: handleAnswer, onClose: handleClose, onSkip: handleSkip })
+    ),
+    !modalOpen && h('button', { className: 'reopen', onClick: handleReopen }, t.quizReopen),
+  );
+}
+
+createRoot(document.getElementById('root')).render(h(App));
+</script>
+</body>
+</html>
