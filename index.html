@@ -1525,9 +1525,28 @@ function Footer() {
 }
 
 // ── MODAL ───────────────────────────────────────
-function Modal({ step, onAnswer, onClose, onSkip }) {
+function LangPicker({ onPick, onClose }) {
+  return h(motion.div, {
+    key: 'langpick',
+    initial: { opacity: 0, x: 20 }, animate: { opacity: 1, x: 0 },
+    exit: { opacity: 0, x: -20 }, transition: { duration: 0.2 },
+  },
+    h('h2', null, "Tilni tanlang"),
+    h('p', { style: { color: 'var(--muted)', fontSize: '15px', margin: '-14px 0 22px' } }, 'Выберите язык'),
+    h('div', { className: 'options' },
+      h('button', { className: 'opt', onClick: () => onPick('uz') },
+        h('span', { className: 'emj' }, '🇺🇿'), "O'zbekcha"),
+      h('button', { className: 'opt', onClick: () => onPick('ru') },
+        h('span', { className: 'emj' }, '🇷🇺'), 'Русский'),
+    ),
+  );
+}
+
+function Modal({ step, langStep, onLangPick, onAnswer, onClose, onSkip }) {
   const t = useContext(LangCtx);
-  const q = t.questions[step];
+  const totalSteps = t.questions.length + 1;
+  const currentStep = langStep ? 0 : step + 1;
+  const q = !langStep ? t.questions[step] : null;
   return h(motion.div, {
     className: 'backdrop',
     initial: { opacity: 0 }, animate: { opacity: 1 }, exit: { opacity: 0 },
@@ -1540,39 +1559,46 @@ function Modal({ step, onAnswer, onClose, onSkip }) {
       exit: { scale: 0.95, opacity: 0 },
       transition: { type: 'spring', stiffness: 320, damping: 30 },
     },
-      h('button', { className: 'close', onClick: onClose, title: t.quizClose }, '×'),
-      h('div', { className: 'step-counter' }, t.quizStep(step + 1, t.questions.length)),
+      h('button', { className: 'close', onClick: onClose, title: langStep ? 'Close' : t.quizClose }, '×'),
+      h('div', { className: 'step-counter' }, langStep ? '1 / ' + totalSteps : t.quizStep(currentStep + 1, totalSteps)),
       h(AnimatePresence, { mode: 'wait' },
-        h(motion.div, {
-          key: q.id,
-          initial: { opacity: 0, x: 20 }, animate: { opacity: 1, x: 0 },
-          exit: { opacity: 0, x: -20 }, transition: { duration: 0.2 },
-        },
-          h('h2', null, q.q),
-          h('div', { className: 'options' },
-            q.options.map(o => h('button', {
-              key: o.v, className: 'opt',
-              onClick: () => onAnswer(q.id, o.v),
-            }, h('span', { className: 'emj' }, o.emj), o.label))
-          ),
-        )
+        langStep
+          ? h(LangPicker, { key: 'lp', onPick: onLangPick, onClose })
+          : h(motion.div, {
+              key: q.id,
+              initial: { opacity: 0, x: 20 }, animate: { opacity: 1, x: 0 },
+              exit: { opacity: 0, x: -20 }, transition: { duration: 0.2 },
+            },
+              h('h2', null, q.q),
+              h('div', { className: 'options' },
+                q.options.map(o => h('button', {
+                  key: o.v, className: 'opt',
+                  onClick: () => onAnswer(q.id, o.v),
+                }, h('span', { className: 'emj' }, o.emj), o.label))
+              ),
+            )
       ),
       h('div', { className: 'progress' },
-        t.questions.map((_, i) => h('span', { key: i, className: i <= step ? 'done' : '' }))
+        Array.from({ length: totalSteps }, (_, i) => h('span', { key: i, className: i <= currentStep ? 'done' : '' }))
       ),
-      h('button', { className: 'skip', onClick: onSkip }, t.quizSkip),
+      !langStep && h('button', { className: 'skip', onClick: onSkip }, t.quizSkip),
     )
   );
 }
 
 // ── APP ─────────────────────────────────────────
 function App() {
-  const [lang, setLang] = useState('ru');
+  const [lang, setLang] = useState('uz');
+  const [langStep, setLangStep] = useState(true);
   const [answers, setAnswers] = useState({});
   const [step, setStep] = useState(0);
   const [modalOpen, setModalOpen] = useState(true);
   const t = T[lang];
 
+  const handleLangPick = (l) => {
+    setLang(l); setLangStep(false);
+    track('lang_pick', { lang: l });
+  };
   const handleAnswer = (qid, v) => {
     track('quiz_answer', { question: qid, answer: v });
     const next = { ...answers, [qid]: v };
@@ -1580,9 +1606,9 @@ function App() {
     if (step + 1 < t.questions.length) { setStep(step + 1); }
     else { track('quiz_completed', next); setTimeout(() => setModalOpen(false), 220); }
   };
-  const handleSkip = () => { track('quiz_skipped'); setAnswers({}); setModalOpen(false); };
-  const handleClose = () => { track('quiz_closed', { step }); setModalOpen(false); };
-  const handleReopen = () => { setStep(0); setAnswers({}); setModalOpen(true); };
+  const handleSkip = () => { track('quiz_skipped'); setAnswers({}); setLangStep(false); setModalOpen(false); };
+  const handleClose = () => { setLangStep(false); track('quiz_closed', { step }); setModalOpen(false); };
+  const handleReopen = () => { setStep(0); setAnswers({}); setLangStep(true); setModalOpen(true); };
 
   return h(LangCtx.Provider, { value: t },
     h('div', { className: 'page' },
@@ -1605,7 +1631,11 @@ function App() {
       h(Footer),
     ),
     h(AnimatePresence, null,
-      modalOpen && h(Modal, { key: 'modal', step, onAnswer: handleAnswer, onClose: handleClose, onSkip: handleSkip })
+      modalOpen && h(Modal, {
+        key: 'modal', step, langStep,
+        onLangPick: handleLangPick,
+        onAnswer: handleAnswer, onClose: handleClose, onSkip: handleSkip,
+      })
     ),
     !modalOpen && h('button', { className: 'reopen', onClick: handleReopen }, t.quizReopen),
   );
